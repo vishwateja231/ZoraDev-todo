@@ -1,0 +1,402 @@
+/* ─── Google Font ────────────────────────────────────────────────────────────
+   Using system Inter stack — works without any external imports.
+   For Inter via Google Fonts, add to index.html:
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Design Tokens ──────────────────────────────────────────────────────────*/
+:root {
+  --clr-bg-from:        #eef2ff;
+  --clr-bg-to:          #f0f9ff;
+  --clr-card:           #ffffff;
+  --clr-border:         #e8eaed;
+  --clr-border-focus:   #6366f1;
+
+  --clr-accent:         #4f46e5;
+  --clr-accent-hover:   #4338ca;
+  --clr-accent-light:   #eef2ff;
+
+  --clr-text-primary:   #111827;
+  --clr-text-secondary: #6b7280;
+  --clr-text-muted:     #9ca3af;
+
+  --clr-danger:         #ef4444;
+  --clr-danger-bg:      #fff1f2;
+  --clr-danger-hover:   #dc2626;
+
+  --clr-error-bg:       #fef2f2;
+  --clr-error-border:   #fecaca;
+  --clr-error-text:     #b91c1c;
+
+  --clr-task-bg:        #fafafa;
+  --clr-task-hover:     #f3f4f6;
+
+  --radius-card:        18px;
+  --radius-input:       10px;
+  --radius-btn:         10px;
+  --radius-task:        10px;
+
+  --shadow-card:        0 4px 6px -1px rgba(0,0,0,.06),
+                        0 16px 40px -8px rgba(99,102,241,.12);
+  --shadow-task-hover:  0 2px 8px rgba(0,0,0,.07);
+
+  --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --transition: 0.2s ease;
+}
+
+/* ─── Reset & Base ───────────────────────────────────────────────────────────*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--clr-text-primary);
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--clr-bg-from) 0%, var(--clr-bg-to) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 56px 16px 80px;
+}
+
+/* ─── Page Wrapper ───────────────────────────────────────────────────────────*/
+.page {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* ─── Card ───────────────────────────────────────────────────────────────────*/
+.card {
+  background: var(--clr-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 32px 28px 24px;
+  border: 1px solid var(--clr-border);
+}
+
+/* ─── Header ─────────────────────────────────────────────────────────────────*/
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.header-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--clr-accent-light);
+  color: var(--clr-accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--clr-text-primary);
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────────*/
+.divider {
+  height: 1px;
+  background: var(--clr-border);
+  margin-bottom: 20px;
+}
+
+/* ─── Input Row ──────────────────────────────────────────────────────────────*/
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.task-input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 14px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--clr-text-primary);
+  background: var(--clr-task-bg);
+  border: 1.5px solid var(--clr-border);
+  border-radius: var(--radius-input);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.task-input::placeholder {
+  color: var(--clr-text-muted);
+}
+
+.task-input:hover {
+  border-color: #c7d2fe;
+  background: #fff;
+}
+
+.task-input:focus {
+  border-color: var(--clr-border-focus);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* ─── Add Button ─────────────────────────────────────────────────────────────*/
+.add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #fff;
+  background: var(--clr-accent);
+  border: none;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+  min-width: 80px;
+}
+
+.add-btn:hover:not(:disabled) {
+  background: var(--clr-accent-hover);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px);
+}
+
+.add-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.add-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Spinner inside button */
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Error Banner ───────────────────────────────────────────────────────────*/
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--clr-error-bg);
+  border: 1px solid var(--clr-error-border);
+  border-radius: 8px;
+  font-size: 0.825rem;
+  color: var(--clr-error-text);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.error-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--clr-error-text);
+  flex-shrink: 0;
+}
+
+/* ─── Empty State ────────────────────────────────────────────────────────────*/
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 32px;
+  text-align: center;
+}
+
+.empty-icon {
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.empty-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--clr-text-secondary);
+  margin-bottom: 4px;
+}
+
+.empty-hint {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
+}
+
+/* ─── Task List ──────────────────────────────────────────────────────────────*/
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--clr-task-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-task);
+  transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.task-item:hover {
+  background: var(--clr-task-hover);
+  box-shadow: var(--shadow-task-hover);
+  border-color: #d1d5db;
+}
+
+.task-item--deleting {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Number badge */
+.task-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--clr-accent-light);
+  color: var(--clr-accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.task-text {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--clr-text-primary);
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+/* ─── Delete Button ──────────────────────────────────────────────────────────*/
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: transparent;
+  color: var(--clr-text-muted);
+  border: 1px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), opacity var(--transition);
+}
+
+/* Show delete icon on task hover */
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background: var(--clr-danger-bg);
+  color: var(--clr-danger);
+  border-color: #fecdd3;
+}
+
+.delete-btn:active {
+  background: #fee2e2;
+}
+
+.delete-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ─── Card Footer ────────────────────────────────────────────────────────────*/
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 16px;
+  margin-top: 8px;
+  border-top: 1px solid var(--clr-border);
+}
+
+.task-count {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────*/
+@media (max-width: 480px) {
+  body {
+    padding: 24px 12px 60px;
+    align-items: flex-start;
+  }
+
+  .card {
+    padding: 24px 18px 20px;
+    border-radius: 14px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .add-btn {
+    padding: 11px 14px;
+    min-width: 64px;
+  }
+
+  /* Always show delete button on touch devices */
+  .delete-btn {
+    opacity: 1;
+  }
+}
