@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 
 // ─── Backend Base URL ─────────────────────────────────────────────────────────
-const BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const BASE_URL = process.env.REACT_APP_BACKEND_URL || '';
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 const ChecklistIcon = () => (
