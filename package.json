@@ -1,0 +1,9 @@
+{
+  "name": "zora-dev-root",
+  "version": "1.0.0",
+  "description": "Root package for easy Render deployment",
+  "scripts": {
+    "postinstall": "cd backend && npm install",
+    "start": "cd backend && npm start"
+  }
+}
